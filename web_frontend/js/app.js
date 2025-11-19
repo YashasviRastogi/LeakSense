@@ -285,31 +285,21 @@ function showPage(pageName) {
         page.classList.add('active');
     }
     
-    // Update mobile nav links
-    document.querySelectorAll('.nav-link').forEach(link => {
+    // Update navigation links
+    document.querySelectorAll('.nav-link, .desktop-nav-link').forEach(link => {
         link.classList.remove('active');
-    });
-    
-    // Update desktop nav links
-    document.querySelectorAll('.desktop-nav-link').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('data-page') === pageName) {
+        if (link.dataset.page === pageName) {
             link.classList.add('active');
         }
     });
     
-    // Update mobile nav link if clicked from there
-    const clickedMobileLink = event?.target?.closest('.nav-link');
-    if (clickedMobileLink) {
-        clickedMobileLink.classList.add('active');
-    }
-    
-    // Close mobile menu
-    if (window.innerWidth <= 1024) {
-        const navMenu = document.getElementById('navMenu');
-        if (navMenu && navMenu.classList.contains('active')) {
-            toggleMobileMenu();
-        }
+    // Close mobile menu if open
+    const navMenu = document.getElementById('navMenu');
+    const backdrop = document.getElementById('mobileMenuBackdrop');
+    if (navMenu.classList.contains('active')) {
+        navMenu.classList.remove('active');
+        backdrop.classList.remove('show');
+        document.body.style.overflow = '';
     }
     
     // Load page-specific data
@@ -323,7 +313,17 @@ function showPage(pageName) {
 // Mobile Menu Toggle
 function toggleMobileMenu() {
     const navMenu = document.getElementById('navMenu');
+    const backdrop = document.getElementById('mobileMenuBackdrop');
+    
     navMenu.classList.toggle('active');
+    backdrop.classList.toggle('show');
+    
+    // Prevent body scroll when menu is open
+    if (navMenu.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = '';
+    }
 }
 
 // Report Form Functions

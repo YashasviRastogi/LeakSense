@@ -19,6 +19,10 @@ class Config:
     DB_NAME = os.getenv('DB_NAME', 'leaksense')
     DB_USER = os.getenv('DB_USER', 'leaksense_user')
     DB_PASSWORD = os.getenv('DB_PASSWORD', 'leaksense_pass')
+    # Local fallback (development) - SQLite file path
+    SQLITE_PATH = os.getenv('SQLITE_PATH', os.path.join(os.path.dirname(__file__), '..', 'database', 'leaksense.db'))
+    # Optional DB type override: 'postgres' or 'sqlite' (auto-fallback if postgres not reachable)
+    DB_TYPE = os.getenv('DB_TYPE', 'postgres')
     
     # CORS settings
     CORS_ORIGINS = os.getenv('CORS_ORIGINS', '*')

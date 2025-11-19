@@ -524,27 +524,27 @@ body {
 /* Mobile Menu Toggle */
 .mobile-menu-toggle {
     position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 1001;
+    top: 16px;
+    left: 16px;
+    z-index: 1002;
     background: white;
     border: 2px solid var(--border-color);
     border-radius: 10px;
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    gap: 4px;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .mobile-menu-toggle span {
-    width: 24px;
-    height: 3px;
+    width: 20px;
+    height: 2px;
     background: var(--primary-color);
     border-radius: 2px;
     transition: all 0.3s ease;
@@ -556,6 +556,25 @@ body {
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
 }
 
+/* Mobile Menu Backdrop */
+.mobile-menu-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-menu-backdrop.show {
+    display: block;
+    opacity: 1;
+}
+
 /* Navigation Menu */
 .nav-menu {
     position: fixed;
@@ -565,7 +584,7 @@ body {
     width: 280px;
     background: white;
     border-right: 2px solid var(--border-color);
-    z-index: 1000;
+    z-index: 1001;
     transition: transform 0.3s ease;
     overflow-y: auto;
     box-shadow: 4px 0 12px rgba(0, 0, 0, 0.08);
@@ -1188,6 +1207,17 @@ body {
     .header-content {
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
+        padding-left: 70px; /* Make space for hamburger menu */
+    }
+    
+    .logo h1 {
+        font-size: 20px; /* Decrease from 28px */
+    }
+    
+    .logo {
+        flex: 1;
+        justify-content: flex-start;
     }
     
     .desktop-only {
